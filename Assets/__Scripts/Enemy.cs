@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using TMPro;
 
 public class Enemy : MonoBehaviour {
 
@@ -11,6 +13,8 @@ public class Enemy : MonoBehaviour {
     public int score = 100; // Points earned for destroying this
     public float showDamageDuration = 0.1f; // # seconds to show damage
     public float powerUpDropChance = 1f; // Chance to drop a power-up
+    public TextMeshProUGUI countText;
+    private int count;
 
     [Header("Set Dynamically: Enemy")]
     public Color[] originalColors;
@@ -31,6 +35,9 @@ public class Enemy : MonoBehaviour {
         {
             originalColors[i] = materials[i].color;
         }
+        count = 0;
+        countText = GameObject.Find("CountText").GetComponent<TextMeshProUGUI>();
+        SetCountText();
     }
 
     // This is a property: A method that acts like a field
@@ -61,6 +68,11 @@ public class Enemy : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+       void SetCountText() 
+   {
+       countText.text =  "Score: " + count.ToString();
+   }
 
     public virtual void Move()
     {
@@ -97,6 +109,8 @@ public class Enemy : MonoBehaviour {
                     notifiedOfDestruction = true;
                     // Destroy this enemy
                     Destroy(this.gameObject);
+                    count = count + score;
+                    SetCountText();
                 }
                 Destroy(otherGO);
                 break;
