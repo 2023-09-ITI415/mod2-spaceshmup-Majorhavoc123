@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Main : MonoBehaviour {
 
@@ -39,6 +40,7 @@ public class Main : MonoBehaviour {
             // Set it to the position of the destroyed ship
             pu.transform.position = e.transform.position;
         }
+        FindObjectOfType<ScoreCount>().IncreaseScore();
     }
 
     private void Awake()
