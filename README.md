@@ -1,2 +1,3 @@
-# 05-Space-SHMUP
- 
+ The changes I had made to this game involved a few things. I had tweaked some variables in the system (the speed of the ship and the damage of weapons),
+ but that was not my primary goal with this project. What I did was I added a UI systems that tracks both current score and your highscore.
+ This highscore is also saved between playthroughs so you can try to beat it over time without having to worry about leaving the application open.
